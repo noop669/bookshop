@@ -1,0 +1,9 @@
+{% extends 'bookshop/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+<li><a href="{% url 'my_order' %}">Order</a></li>
+<li><a href="{% url 'my_comments' %}">Comments</a></li>
+
+{% endblock %}

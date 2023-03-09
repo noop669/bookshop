@@ -1,0 +1,25 @@
+{% extends 'bookshop/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<ul class="list-articles">
+    {% for i in books %}
+    <li><div class="article-panel">
+        <p class="first">Жанр: <a href="{{ i.genre.get_absolute_url }}">{{i.genre}}</a></p>
+        <p class="last">Цена: {{i.price}}</p>
+    </div>
+        {% if i.photo %}
+        <p><img class="img-article-left thumb" src="{{i.photo.url}}"></p>
+        {% endif %}
+        <h2><a href="{{ i.get_absolute_url }}">{{i.name_book}}</a></h2>
+        <p>{{i.description| truncatewords:50}}</p>
+        <div class="clear"></div>
+        {% if i.in_stock %}
+        <p class="link-read-post">Есть в наличие</p>
+        {% endif %}
+
+        <p class="link-read-post"><a href="{% url 'cart' %}">Купить</a></p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

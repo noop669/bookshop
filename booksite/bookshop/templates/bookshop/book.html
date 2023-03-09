@@ -1,0 +1,39 @@
+{% extends 'bookshop/base.html' %}
+
+{% block content %}
+<h1>{{book.name_book}}</h1>
+
+{% if book.photo %}
+<p><img class="img-article-left" src="{{book.photo.url}}"></p>
+{% endif %}
+
+{{book.description}}
+
+<form method="post">
+<p>Комментарии {{book.comments_book.all.count}}</p>
+  {% for j in book.comments_book.all %}
+  <li>
+    <div class="article-panel">
+      <p class="first">{{j.author.first_name}}</p>
+      <p class="last">{{j.created_date}}</p>
+      <p>{{j.text}}</p>
+    </div>
+
+
+  </li>
+  {% endfor %}
+<hr>
+<p>Добавить комментарий</p>
+
+  {% csrf_token %}
+
+  <div class="form-error">{{ form.non_field_errors }}</div>
+
+  {% for i in form %}
+  <p><label class="form-label" for="{{ i.id_for_label }}">{{i.label}}: </label>{{i}}</p>
+  <div class="form-error">{{ i.errors }}</div>
+  {% endfor %}
+  <button type="submit">Добавить</button>
+</form>
+
+{% endblock %}

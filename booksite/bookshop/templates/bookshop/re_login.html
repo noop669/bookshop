@@ -1,0 +1,16 @@
+{% extends 'bookshop/base.html' %}
+
+{% block content %}
+
+<h1>{{title}}</h1>
+<form action="{% url 're_login' %}" method="post">
+    {% csrf_token %}
+
+    {% for i in form %}
+    <p><label class="form-label" for="{{ i.id_for_label }}">{{i.label}}:</label>{{ i }}</p>
+    <div class="form-error">{{ i.errors }}</div>
+    {% endfor %}
+
+    <button type="submit">Поменять</button>
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'bookshop/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+{% for i in orders %}
+<p>{{i.books.all}}</p>
+<p>{{i.delivery_city}}</p>
+<p>{{i.date_create}}</p>
+{% if i.delivery_on %}
+<p>Доставлен</p>
+{% else %}
+<p>Недоставлен</p>
+
+{% endif %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'bookshop/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+{% for i in comments %}
+
+<p>{{i.book}}</p>
+<p>{{i.created_date}}</p>
+<p>{{i.text}}</p>
+<button type="button">Удалить</button>
+
+
+{% endfor %}
+{% endblock %}
